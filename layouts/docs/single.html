@@ -2,6 +2,15 @@
 <article class="markdown">
   <h1>{{ .Title }}</h1>
   {{- .Content -}}
+  
+  {{ if and .File .Site.Params.BookRepo .Site.Params.BookEditPath }}
+    <div>
+      <a class="flex align-center" href="{{ .Site.Params.BookRepo }}/{{ .Site.Params.BookEditPath }}/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener">
+        <img src="{{ "svg/edit.svg" | relURL }}" class="book-icon" alt="Edit" />
+        <span>{{ i18n "Edit this page" }}</span>
+      </a>
+    </div>
+  {{ end }}
   <hr/>
   <img src="{{ .Site.Params.WechatQRCode }}" style="max-width: 100%;"/>
   <p>本作品采用 <strong><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.zh-Hans">知识署名-非商业性使用-禁止演绎 （BY-NC-ND） 4.0 国际许可协议</a></strong> 进行许可。</p>
